@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/007/508/685/original/air-conditioning-app-icons-set-conditioner-celsius-fahrenheit-winter-and-summer-temperature-water-drop-ionizer-night-mode-snowflake-web-or-mobile-applications-isolated-illustrations-vector.jpg');
+            background-size:cover;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 200px;
+            border: 30px solid #bc1ebc;
+            border-radius: 10px;
+            text-align: center;
+            background: #ccc;
+        }
+        h1{
+            font-size: 35px;
+            color:#490449;
+        }
+        label{
+            font-size: 25px;
+            font-family: sans-serif;
+            border-radius: 12px;
+    
+        }
+        input[type="number"]{
+            padding:20px 20px 20px 20px;
+            width:100%;
+            border-radius: 20px;
+            border-color: black;
+            border-style: hidden;
+            font-size: 18px;
+        }
+        select{
+            margin-top: 15px;
+            padding:10px 5px 10px 5px;
+            width:25%;
+            border-radius: 20px;
+            border-color: black;
+            border-style: hidden;
+
+        }
+        button{
+            margin-right: 25px;
+            background-color: #bc1ebc;
+            color: aliceblue;
+            font-size: 13px;
+            border-radius: 25px;
+            margin-top: 15px;
+            padding:10px 5px 10px 5px;
+            width:25%;
+            border-radius: 20px;
+            border-color: black;
+            border-style: hidden;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Temperature Converter</h1>
+        <label for="temperature">Enter Temperature:</label>
+        <input type="number" id="temperature" placeholder="Enter temperature">
+        <select id="unit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <button onclick="convert()">Convert</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function convert() {
+            const temperatureInput = document.getElementById("temperature");
+            const unitSelect = document.getElementById("unit");
+            const resultElement = document.getElementById("result");
+
+            // Check if the input is empty or not a valid number
+            if (!temperatureInput.value || isNaN(temperatureInput.value)) {
+                resultElement.textContent = "Please enter a valid temperature.";
+                return;
+            }
+
+            const temperature = parseFloat(temperatureInput.value);
+            const unit = unitSelect.value;
+            let convertedTemperature;
+            let resultText;
+
+            if (unit === "celsius") {
+                // Convert Celsius to Fahrenheit
+                convertedTemperature = (temperature * 9/5) + 32;
+                resultText = `${temperature} degrees Celsius is equal to ${convertedTemperature.toFixed(2)} degrees Fahrenheit.`;
+            } else {
+                // Convert Fahrenheit to Celsius
+                convertedTemperature = (temperature - 32) * 5/9;
+                resultText = `${temperature} degrees Fahrenheit is equal to ${convertedTemperature.toFixed(2)} degrees Celsius.`;
+            }
+
+            resultElement.textContent = resultText;
+        }
+    </script>
+</body>
+</html>
